@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import ProductCard from "./components/ProductCard";
 import { ProductType } from "./models/products";
 import { getPorducts } from "./services/getProducts.service";
 
@@ -15,11 +15,23 @@ function App() {
   }, []);
 
   return (
-    <div className='App'>
-      {productList &&
-        productList.map((product, index) => {
-          return <div key={index}>{product.name}</div>;
-        })}
+    <div className=' flex flex-col justify-between items-center'>
+      <div className='h-screen w-96 flex flex-col m-4'>
+        {productList ? (
+          productList.map((product, index) => {
+            return (
+              <ProductCard
+                key={index}
+                id={product.id}
+                name={product.name}
+                marca={product.marca}
+              />
+            );
+          })
+        ) : (
+          <p>No product founded</p>
+        )}
+      </div>
     </div>
   );
 }
