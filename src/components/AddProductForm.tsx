@@ -27,8 +27,6 @@ const AddProductForm = ({ setProductList }: props) => {
     setProductList((prev) => prev);
   };
 
-  useEffect(() => {});
-
   return (
     <>
       <form onSubmit={(e) => submitHanlder(e)}>

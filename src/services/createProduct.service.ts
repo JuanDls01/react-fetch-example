@@ -6,7 +6,7 @@ type responseFetch = ProductType & { message?: string }
 
 export const createProduct = async (product: ProductType) => {
     try {
-        const response = await axios.post("http://localhost:3001/product", product)
+        const response = await axios.post("/product", product)
             .catch((err) => catchErrorsAxios(err)
             )
         const data: responseFetch = response.data
