@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductType } from "../models/products";
 import { createProduct } from "../services/createProduct.service";
 
-const AddProductForm = () => {
+type props = {
+  setProductList: React.Dispatch<React.SetStateAction<ProductType[]>>;
+};
+
+const AddProductForm = ({ setProductList }: props) => {
   const [productDetails, setProductDetails] = useState<ProductType>({
     name: "",
     marca: "",
@@ -15,9 +19,15 @@ const AddProductForm = () => {
 
   const submitHanlder = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(productDetails);
-    // await createProduct(productDetails);
+    await createProduct(productDetails);
+    setProductDetails({
+      name: "",
+      marca: "",
+    });
+    setProductList((prev) => prev);
   };
+
+  useEffect(() => {});
 
   return (
     <>

@@ -7,19 +7,20 @@ type ProductList = ProductType[];
 
 function App() {
   const [productList, setProductList] = useState<ProductList>([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     getPorducts().then((products) => {
       setProductList(products);
     });
-  }, []);
+  }, [productList]);
 
   return (
     <div className=' flex flex-col justify-between items-center'>
       <div className='h-screen w-96 flex flex-col m-4'>
         <h1 className='text-6xl font-bold text-white mb-10'>Products App</h1>
         <h3 className='text-2xl font-bold text-white mb-5'>Create Product</h3>
-        <AddProductForm />
+        <AddProductForm setProductList={setProductList} />
         <h3 className='text-2xl font-bold text-white mb-5'>Products List</h3>
         {productList ? (
           productList.map((product, index) => {
