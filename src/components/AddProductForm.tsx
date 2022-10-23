@@ -6,8 +6,13 @@ type props = {
   setProductList: React.Dispatch<React.SetStateAction<ProductType[]>>;
 };
 
+export type inputType = {
+  name: string;
+  marca: string;
+};
+
 const AddProductForm = ({ setProductList }: props) => {
-  const [productDetails, setProductDetails] = useState<ProductType>({
+  const [productDetails, setProductDetails] = useState<inputType>({
     name: "",
     marca: "",
   });
@@ -17,7 +22,7 @@ const AddProductForm = ({ setProductList }: props) => {
     console.log(productDetails);
   };
 
-  const submitHanlder = async (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     await createProduct(productDetails);
     setProductDetails({
@@ -29,7 +34,7 @@ const AddProductForm = ({ setProductList }: props) => {
 
   return (
     <>
-      <form onSubmit={(e) => submitHanlder(e)}>
+      <form onSubmit={(e) => submitHandler(e)}>
         <input
           type='text'
           name='name'
