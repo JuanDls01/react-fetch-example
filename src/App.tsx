@@ -7,7 +7,6 @@ type ProductList = ProductType[];
 
 function App() {
   const [productList, setProductList] = useState<ProductList>([]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     getPorducts().then((products) => {

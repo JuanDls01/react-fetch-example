@@ -9,7 +9,7 @@ export const deleteProduct = async (id: number) => {
         const response = await axios.delete(`/product/:${id}`)
             .catch((err) => catchErrorsAxios(err));
         const data: responseFetch = response.data;
-        alert(`Producto ${data.name} creado exitosamente`)
+        alert(`Producto ${data.name} eliminado exitosamente`)
     }
     catch (err) {
         console.log(err);

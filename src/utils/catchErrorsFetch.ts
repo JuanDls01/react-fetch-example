@@ -1,5 +1,3 @@
-import { AxiosError } from "axios";
-
 export const catchErrorsAxios = (err: any) => {
     if (err.response) {
         console.log(`Surgio un error: ${err.response.data?.message}`)
