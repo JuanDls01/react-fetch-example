@@ -22,7 +22,7 @@ const AddProductForm = ({ setProductList }: props) => {
     console.log(productDetails);
   };
 
-  const submitHandler = async (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createProduct(productDetails);
     setProductDetails({

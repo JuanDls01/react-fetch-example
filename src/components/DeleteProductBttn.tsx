@@ -3,13 +3,13 @@ import { deleteProduct } from "../services/deleteProduct.service";
 
 type props = {
   id: number;
-  setProductList?: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const DeleteProductBttn = ({ id }: props) => {
+const DeleteProductBttn = ({ id, setIsUpdating }: props) => {
   const handleClick = () => {
     deleteProduct(id);
-    // setProductList((prev) => prev);
+    setIsUpdating(false);
   };
   return (
     <button
