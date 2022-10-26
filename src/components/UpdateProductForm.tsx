@@ -14,13 +14,12 @@ const UpdateProductForm: React.FC<props> = ({
   setIsUpdating,
 }) => {
   const [productDetails, setProductDetails] = useState<inputType>({
-    name: name,
-    marca: marca,
+    name: "",
+    marca: "",
   });
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(productDetails);
   };
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,7 +41,7 @@ const UpdateProductForm: React.FC<props> = ({
         <input
           type='text'
           name='name'
-          // placeholder='iPhone 12'
+          placeholder={name}
           value={productDetails.name}
           onChange={(e) => handleInput(e)}
           className='h-8 w-full mb-3 p-1 flex items-center justify-center rounded focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 focus:ring-1 border border-gray-800 placeholder:italic placeholder:text-slate-600'
@@ -50,7 +49,7 @@ const UpdateProductForm: React.FC<props> = ({
         <input
           type='text'
           name='marca'
-          // placeholder='Apple'
+          placeholder={marca}
           value={productDetails.marca}
           onChange={(e) => handleInput(e)}
           className='h-8 w-full mb-3 p-1 flex items-center justify-center rounded focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 focus:ring-1 border border-gray-800 placeholder:italic placeholder:text-slate-600'

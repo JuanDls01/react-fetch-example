@@ -1,4 +1,3 @@
-import { ProductType } from "../models/products";
 import { deleteProduct } from "../services/deleteProduct.service";
 
 type props = {

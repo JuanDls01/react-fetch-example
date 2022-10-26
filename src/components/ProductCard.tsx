@@ -8,7 +8,6 @@ const ProductCard: React.FC<ProductType> = ({ id, name, marca }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const handleClick = () => {
     setIsUpdating((prev) => !prev);
-    console.log(isUpdating);
   };
   return (
     <div className='bg-[#363636] rounded flex justify-between items-center flex-row p-2 mb-2'>
@@ -38,8 +37,6 @@ const ProductCard: React.FC<ProductType> = ({ id, name, marca }) => {
         <DeleteProductBttn id={id} setIsUpdating={setIsUpdating} />
       </div>
     </div>
-    // {isUpdating && <UpdateProductForm id={id} />}
-    // </div>
   );
 };
 export default ProductCard;
