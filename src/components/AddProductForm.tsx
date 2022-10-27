@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { ProductType } from "../models/products";
 import { createProduct } from "../services/createProduct.service";
 
 type props = {
-  setProductList: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  setUpdated: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export type inputType = {
@@ -11,11 +10,13 @@ export type inputType = {
   marca: string;
 };
 
-const AddProductForm = ({ setProductList }: props) => {
+const AddProductForm = ({ setUpdated }: props) => {
   const [productDetails, setProductDetails] = useState<inputType>({
     name: "",
     marca: "",
   });
+
+  // const { updated, setUpdated } = useUpdatedContext();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -24,12 +25,13 @@ const AddProductForm = ({ setProductList }: props) => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await createProduct(productDetails);
+    await createProduct(productDetails).then((response) =>
+      setUpdated((prev) => prev + 1)
+    );
     setProductDetails({
       name: "",
       marca: "",
     });
-    setProductList((prev) => prev);
   };
 
   return (

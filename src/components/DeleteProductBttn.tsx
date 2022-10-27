@@ -3,11 +3,12 @@ import { deleteProduct } from "../services/deleteProduct.service";
 type props = {
   id: number;
   setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>;
+  setUpdated: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const DeleteProductBttn = ({ id, setIsUpdating }: props) => {
+const DeleteProductBttn = ({ id, setIsUpdating, setUpdated }: props) => {
   const handleClick = () => {
-    deleteProduct(id);
+    deleteProduct(id).then((response) => setUpdated((prev) => prev + 1));
     setIsUpdating(false);
   };
   return (

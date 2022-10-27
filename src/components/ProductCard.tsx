@@ -4,7 +4,11 @@ import DeleteProductBttn from "./DeleteProductBttn";
 import UpdateProductForm from "./UpdateProductForm";
 import { AiTwotoneEdit } from "react-icons/ai";
 
-const ProductCard: React.FC<ProductType> = ({ id, name, marca }) => {
+type props = ProductType & {
+  setUpdated: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const ProductCard: React.FC<props> = ({ id, name, marca, setUpdated }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const handleClick = () => {
     setIsUpdating((prev) => !prev);
@@ -24,6 +28,7 @@ const ProductCard: React.FC<ProductType> = ({ id, name, marca }) => {
             name={name}
             marca={marca}
             setIsUpdating={setIsUpdating}
+            setUpdated={setUpdated}
           />
         )}
       </div>
@@ -34,7 +39,11 @@ const ProductCard: React.FC<ProductType> = ({ id, name, marca }) => {
         >
           <AiTwotoneEdit />
         </button>
-        <DeleteProductBttn id={id} setIsUpdating={setIsUpdating} />
+        <DeleteProductBttn
+          id={id}
+          setIsUpdating={setIsUpdating}
+          setUpdated={setUpdated}
+        />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { inputType } from "./AddProductForm";
 
 type props = ProductType & {
   setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>;
+  setUpdated: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const UpdateProductForm: React.FC<props> = ({
