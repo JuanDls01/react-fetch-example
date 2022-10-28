@@ -1,6 +1,7 @@
 import { ProductType } from "../models/products";
 import axios from 'axios';
 import { catchErrorsAxios } from "../utils/catchErrorsFetch";
+import swal from "sweetalert";
 
 type responseFetch = ProductType & { message?: string }
 
@@ -10,8 +11,10 @@ export const updateProduct = async (product: ProductType) => {
             .catch((err) => catchErrorsAxios(err)
             )
         const data: responseFetch = response.data
-        alert(`Producto ${data.name} actualizado exitosamente`)
+        swal("Good job!", `Producto ${data.name} actualizado exitosamente`, "success")
+        // alert(`Producto ${data.name} actualizado exitosamente`)
     } catch (err) {
-        alert(`Catcheando el error: ${err}`)
+        swal('Ups', `${err}`, 'error')
+        // alert(`Catcheando el error: ${err}`)
     }
 }

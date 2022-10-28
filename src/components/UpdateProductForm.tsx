@@ -13,6 +13,7 @@ const UpdateProductForm: React.FC<props> = ({
   name,
   marca,
   setIsUpdating,
+  setUpdated,
 }) => {
   const [productDetails, setProductDetails] = useState<inputType>({
     name: "",
@@ -25,7 +26,9 @@ const UpdateProductForm: React.FC<props> = ({
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await updateProduct({ ...productDetails, id: id });
+    await updateProduct({ ...productDetails, id: id }).then((response) =>
+      setUpdated((prev) => prev + 1)
+    );
     setProductDetails({
       name: "",
       marca: "",
