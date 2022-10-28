@@ -16,8 +16,8 @@ const UpdateProductForm: React.FC<props> = ({
   setUpdated,
 }) => {
   const [productDetails, setProductDetails] = useState<inputType>({
-    name: "",
-    marca: "",
+    name: name,
+    marca: marca,
   });
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,26 +42,32 @@ const UpdateProductForm: React.FC<props> = ({
         onSubmit={(e) => submitHandler(e)}
         // className='h-full flex place-content-around flex-col'
       >
-        <input
-          type='text'
-          name='name'
-          placeholder={name}
-          value={productDetails.name}
-          onChange={(e) => handleInput(e)}
-          className='h-8 w-full mb-3 p-1 flex items-center justify-center rounded focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 focus:ring-1 border border-gray-800 placeholder:italic placeholder:text-slate-600'
-        />
-        <input
-          type='text'
-          name='marca'
-          placeholder={marca}
-          value={productDetails.marca}
-          onChange={(e) => handleInput(e)}
-          className='h-8 w-full mb-3 p-1 flex items-center justify-center rounded focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 focus:ring-1 border border-gray-800 placeholder:italic placeholder:text-slate-600'
-        />
+        <div className='flex'>
+          <label className='text-lg text-white mr-1.5'>Name:</label>
+          <input
+            type='text'
+            name='name'
+            placeholder={name}
+            value={productDetails.name}
+            onChange={(e) => handleInput(e)}
+            className='text-lg text-white w-4/6 bg-transparent focus:outline-none focus:border-0 focus:ring-0 placeholder:italic placeholder:text-slate-600'
+          />
+        </div>
+        <div className='flex'>
+          <label className='text-lg text-white mr-1'>Brand:</label>
+          <input
+            type='text'
+            name='marca'
+            placeholder={marca}
+            value={productDetails.marca}
+            onChange={(e) => handleInput(e)}
+            className='text-lg text-white w-4/6 bg-transparent focus:outline-none focus:border-0 focus:ring-0 placeholder:italic placeholder:text-slate-600'
+          />
+        </div>
         <input
           type='submit'
-          className='h-8 w-full bg-sky-500 flex justify-center items-center rounded hover:bg-sky-400 active:ring active:ring-sky-600 text-white '
-          value='Guardar'
+          className='h-8 w-full mt-2 bg-sky-500 flex justify-center items-center rounded hover:bg-sky-400 active:ring active:ring-sky-600 text-white '
+          value='Save'
         />
       </form>
     </>

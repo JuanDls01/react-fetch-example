@@ -56,7 +56,7 @@ const AddProductForm = ({ setUpdated }: props) => {
         <input
           type='submit'
           className='h-10 w-full mb-4 bg-indigo-500 flex justify-center items-center rounded hover:bg-indigo-400 active:ring active:ring-indigo-600 text-white '
-          value='Cargar'
+          value='Save'
         />
       </form>
     </>

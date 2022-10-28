@@ -15,7 +15,6 @@ function App() {
     getPorducts().then((products) => {
       setProductList(products);
     });
-    // console.log("hola");
   }, [updated]);
 
   return (

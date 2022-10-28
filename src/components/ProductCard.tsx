@@ -16,11 +16,15 @@ const ProductCard: React.FC<props> = ({ id, name, marca, setUpdated }) => {
   return (
     <div className='bg-[#363636] rounded flex justify-between items-center flex-row p-2 mb-2'>
       {/* <div className='flex justify-between items-center flex-row w-full'> */}
-      <div className='flex flex-col w-4/6 h-full place-content-around justify-'>
+      <div className='flex flex-col w-4/6 min-h-20 place-content-around justify-'>
         {!isUpdating ? (
           <>
-            <p className={`text-lg text-white`}>Nombre: {name}</p>
-            <p className={`text-lg text-white`}>Marca: {marca}</p>
+            <p className={`text-lg text-white h-1/2 flex items-center`}>
+              Name: {name}
+            </p>
+            <p className={`text-lg text-white h-1/2 flex items-center`}>
+              Brand: {marca}
+            </p>
           </>
         ) : (
           <UpdateProductForm
