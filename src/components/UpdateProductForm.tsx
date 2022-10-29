@@ -20,28 +20,32 @@ const UpdateProductForm: React.FC<props> = ({
     marca: marca,
   });
 
+  const [backendErrors, setBackendErrors] = useState<string>("");
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setBackendErrors("");
   };
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await updateProduct({ ...productDetails, id: id }).then((response) =>
-      setUpdated((prev) => prev + 1)
-    );
-    setProductDetails({
-      name: "",
-      marca: "",
-    });
-    setIsUpdating((prev) => !prev);
+    await updateProduct({ ...productDetails, id: id })
+      .then((response) => {
+        setUpdated((prev) => prev + 1);
+        setProductDetails({
+          name: "",
+          marca: "",
+        });
+        setIsUpdating((prev) => !prev);
+      })
+      .catch((err) => {
+        setBackendErrors(`${err}`);
+      });
   };
 
   return (
     <>
-      <form
-        onSubmit={(e) => submitHandler(e)}
-        // className='h-full flex place-content-around flex-col'
-      >
+      <form onSubmit={(e) => submitHandler(e)}>
         <div className='flex'>
           <label className='text-lg text-white mr-1.5'>Name:</label>
           <input
@@ -64,6 +68,11 @@ const UpdateProductForm: React.FC<props> = ({
             className='text-lg text-white w-4/6 bg-transparent focus:outline-none focus:border-0 focus:ring-0 placeholder:italic placeholder:text-slate-600'
           />
         </div>
+        {backendErrors ? (
+          <p className='text-red-400 text-ligth text-xs mb-3'>
+            {backendErrors}
+          </p>
+        ) : null}
         <input
           type='submit'
           className='h-8 w-full mt-2 bg-sky-500 flex justify-center items-center rounded hover:bg-sky-400 active:ring active:ring-sky-600 text-white '
