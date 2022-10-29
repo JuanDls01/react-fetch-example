@@ -1,5 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import { AddProductForm, ProductCard, ThemeTogglerBttn } from "./components";
+import {
+  AddProductForm,
+  Navbar,
+  ProductCard,
+  ThemeTogglerBttn,
+} from "./components";
 import { useThemeContext } from "./Context";
 import { useUpdatedContext } from "./Context/contextExample";
 import { ProductType } from "./models/products";
@@ -21,9 +26,8 @@ function App() {
 
   return (
     <div className={`${theme} flex flex-col justify-between items-center`}>
+      <Navbar />
       <div className='h-screen w-96 flex flex-col m-4'>
-        <h1 className={`${theme} text-6xl font-bold mb-10`}>Products App</h1>
-        <ThemeTogglerBttn />
         <h3 className={`${theme} text-2xl font-bold mb-5`}>Create Product</h3>
         <AddProductForm setUpdated={setUpdated} />
         <h3 className={`${theme} text-2xl font-bold mb-5`}>Products List</h3>
