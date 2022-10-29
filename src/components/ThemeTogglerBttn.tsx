@@ -1,5 +1,5 @@
-import { ThemeContext, themes, useThemeContext } from "../Context";
 import { BsMoonStars, BsSun } from "react-icons/bs";
+import { themes, useThemeContext } from "../Context/ThemeContext";
 
 const ThemeTogglerBttn: React.FC = () => {
   const { theme, setTheme } = useThemeContext();

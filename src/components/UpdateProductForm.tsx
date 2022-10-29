@@ -1,26 +1,25 @@
 import { useState } from "react";
+import { useReloadContext } from "../Context/ReloadContext";
 import { ProductType } from "../models/products";
 import { updateProduct } from "../services";
 import { inputType } from "./AddProductForm";
 
 type props = ProductType & {
-  setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>;
-  setUpdated: React.Dispatch<React.SetStateAction<number>>;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const UpdateProductForm: React.FC<props> = ({
   id,
   name,
   marca,
-  setIsUpdating,
-  setUpdated,
+  setIsEditing,
 }) => {
   const [productDetails, setProductDetails] = useState<inputType>({
     name: name,
     marca: marca,
   });
-
   const [backendErrors, setBackendErrors] = useState<string>("");
+  const { setReload } = useReloadContext();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -31,12 +30,12 @@ const UpdateProductForm: React.FC<props> = ({
     e.preventDefault();
     await updateProduct({ ...productDetails, id: id })
       .then((response) => {
-        setUpdated((prev) => prev + 1);
+        setReload((prev) => prev + 1);
         setProductDetails({
           name: "",
           marca: "",
         });
-        setIsUpdating((prev) => !prev);
+        setIsEditing((prev) => !prev);
       })
       .catch((err) => {
         setBackendErrors(`${err}`);

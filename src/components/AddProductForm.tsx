@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import { themes, useThemeContext } from "../Context";
+import { useReloadContext } from "../Context/ReloadContext";
+import { themes, useThemeContext } from "../Context/ThemeContext";
 import { createProduct } from "../services/createProduct.service";
-
-type props = {
-  setUpdated: React.Dispatch<React.SetStateAction<number>>;
-};
 
 export type inputType = {
   name: string;
   marca: string;
 };
 
-const AddProductForm = ({ setUpdated }: props) => {
+const AddProductForm: React.FC = () => {
   const [productDetails, setProductDetails] = useState<inputType>({
     name: "",
     marca: "",
   });
 
-  const [backendErrors, setBackendErrors] = useState<string>("");
-
   const { theme } = useThemeContext();
+  const { setReload } = useReloadContext();
+
+  const [backendErrors, setBackendErrors] = useState<string>("");
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -30,7 +28,7 @@ const AddProductForm = ({ setUpdated }: props) => {
     e.preventDefault();
     await createProduct(productDetails)
       .then((response) => {
-        setUpdated((prev) => prev + 1);
+        setReload((prev) => prev + 1);
         setProductDetails({
           name: "",
           marca: "",

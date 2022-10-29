@@ -1,4 +1,4 @@
-import { themes, useThemeContext } from "../Context";
+import { themes, useThemeContext } from "../Context/ThemeContext";
 import ThemeTogglerBttn from "./ThemeTogglerBttn";
 
 const Navbar = () => {
