@@ -69,7 +69,7 @@ const UpdateProductForm: React.FC<props> = ({
           />
         </div>
         {backendErrors ? (
-          <p className='text-red-400 text-ligth text-xs mb-3'>
+          <p className='text-red-400 font-extraligth text-xs mb-3'>
             {backendErrors}
           </p>
         ) : null}
