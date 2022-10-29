@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import axios from "axios";
 import { UpdatedProvider } from "./Context/contextExample";
+import ThemeProvider from "./Context/Theme-context";
 
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -16,8 +17,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {/* <UpdatedProvider> */}
-    <App />
-    {/* </UpdatedProvider> */}
+    <ThemeProvider>
+      {/* <UpdatedProvider> */}
+      <App />
+      {/* </UpdatedProvider> */}
+    </ThemeProvider>
   </React.StrictMode>
 );
