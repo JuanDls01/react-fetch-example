@@ -6,6 +6,7 @@ import axios from "axios";
 import { UpdatedProvider } from "./Context/contextExample";
 import ThemeProvider from "./Context/ThemeContext";
 import ReloadProvider from "./Context/ReloadContext";
+import { BrowserRouter } from "react-router-dom";
 
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -18,10 +19,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <ReloadProvider>
-        <App />
-      </ReloadProvider>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <ReloadProvider>
+          <App />
+        </ReloadProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
