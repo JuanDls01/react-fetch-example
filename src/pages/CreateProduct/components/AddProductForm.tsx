@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useReloadContext } from "../Context/ReloadContext";
-import { themes, useThemeContext } from "../Context/ThemeContext";
-import { createProduct } from "../services/createProduct.service";
+import { useReloadContext } from "../../../Context/ReloadContext";
+import { themes, useThemeContext } from "../../../Context/ThemeContext";
+import { createProduct } from "../../../services/createProduct.service";
 
 export type inputType = {
   name: string;

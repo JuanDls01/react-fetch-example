@@ -1,5 +1,5 @@
-import { useReloadContext } from "../Context/ReloadContext";
-import { deleteProduct } from "../services/deleteProduct.service";
+import { useReloadContext } from "../../../Context/ReloadContext";
+import { deleteProduct } from "../../../services/deleteProduct.service";
 
 type props = {
   id: number;

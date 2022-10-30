@@ -1,5 +1,5 @@
-import { AddProductForm } from "../components";
-import { useThemeContext } from "../Context/ThemeContext";
+import { useThemeContext } from "../../Context/ThemeContext";
+import AddProductForm from "./components/AddProductForm";
 
 const CreateProduct = () => {
   const { theme } = useThemeContext();

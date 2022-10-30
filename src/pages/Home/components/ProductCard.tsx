@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { ProductType } from "../models/products";
+import { ProductType } from "../../../models/products";
 import DeleteProductBttn from "./DeleteProductBttn";
 import UpdateProductForm from "./UpdateProductForm";
 import { AiTwotoneEdit } from "react-icons/ai";
-import { themes, useThemeContext } from "../Context/ThemeContext";
+import { themes, useThemeContext } from "../../../Context/ThemeContext";
 
 const ProductCard: React.FC<ProductType> = ({ id, name, marca }) => {
   const [isEditing, setIsEditing] = useState(false);

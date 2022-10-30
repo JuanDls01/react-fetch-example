@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useReloadContext } from "../Context/ReloadContext";
-import { ProductType } from "../models/products";
-import { updateProduct } from "../services";
-import { inputType } from "./AddProductForm";
+import { useReloadContext } from "../../../Context/ReloadContext";
+import { ProductType } from "../../../models/products";
+import { updateProduct } from "../../../services";
+import { inputType } from "../../CreateProduct/components/AddProductForm";
 
 type props = ProductType & {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;

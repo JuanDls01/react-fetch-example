@@ -1,7 +1,7 @@
 import { ProductType } from "../models/products";
 import axios from 'axios';
 import { catchErrorsAxios } from "../utils/catchErrorsFetch";
-import { inputType } from "../components/AddProductForm";
+import { inputType } from "../pages/CreateProduct/components/AddProductForm";
 import swal from "sweetalert";
 
 type responseFetch = ProductType & { message?: string }
