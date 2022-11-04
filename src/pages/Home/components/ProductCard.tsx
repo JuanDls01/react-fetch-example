@@ -5,7 +5,7 @@ import UpdateProductForm from "./UpdateProductForm";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { themes, useThemeContext } from "../../../Context/ThemeContext";
 
-const ProductCard: React.FC<ProductType> = ({ id, name, marca }) => {
+const ProductCard: React.FC<ProductType> = ({ id, name, brand }) => {
   const [isEditing, setIsEditing] = useState(false);
   const { theme } = useThemeContext();
   const handleClick = () => {
@@ -25,14 +25,14 @@ const ProductCard: React.FC<ProductType> = ({ id, name, marca }) => {
               Name: {name}
             </p>
             <p className={`text-lg text-white h-1/2 flex items-center`}>
-              Brand: {marca}
+              Brand: {brand}
             </p>
           </>
         ) : (
           <UpdateProductForm
             id={id}
             name={name}
-            marca={marca}
+            brand={brand}
             setIsEditing={setIsEditing}
           />
         )}

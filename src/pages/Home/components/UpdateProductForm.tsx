@@ -11,12 +11,12 @@ type props = ProductType & {
 const UpdateProductForm: React.FC<props> = ({
   id,
   name,
-  marca,
+  brand,
   setIsEditing,
 }) => {
   const [productDetails, setProductDetails] = useState<inputType>({
     name: name,
-    marca: marca,
+    brand: brand,
   });
   const [backendErrors, setBackendErrors] = useState<string>("");
   const { setReload } = useReloadContext();
@@ -33,7 +33,7 @@ const UpdateProductForm: React.FC<props> = ({
         setReload((prev) => prev + 1);
         setProductDetails({
           name: "",
-          marca: "",
+          brand: "",
         });
         setIsEditing((prev) => !prev);
       })
@@ -60,9 +60,9 @@ const UpdateProductForm: React.FC<props> = ({
           <label className='text-lg text-white mr-1'>Brand:</label>
           <input
             type='text'
-            name='marca'
-            placeholder={marca}
-            value={productDetails.marca}
+            name='brand'
+            placeholder={brand}
+            value={productDetails.brand}
             onChange={(e) => handleInput(e)}
             className='text-lg text-white w-4/6 bg-transparent focus:outline-none focus:border-0 focus:ring-0 placeholder:italic placeholder:text-slate-600'
           />

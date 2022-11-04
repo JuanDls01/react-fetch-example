@@ -5,13 +5,13 @@ import { createProduct } from "../../../services/createProduct.service";
 
 export type inputType = {
   name: string;
-  marca: string;
+  brand: string;
 };
 
 const AddProductForm: React.FC = () => {
   const [productDetails, setProductDetails] = useState<inputType>({
     name: "",
-    marca: "",
+    brand: "",
   });
 
   const { theme } = useThemeContext();
@@ -31,7 +31,7 @@ const AddProductForm: React.FC = () => {
         setReload((prev) => prev + 1);
         setProductDetails({
           name: "",
-          marca: "",
+          brand: "",
         });
       })
       .catch((err) => {
@@ -71,9 +71,9 @@ const AddProductForm: React.FC = () => {
         <div className='relative items-center'>
           <input
             type='text'
-            name='marca'
+            name='brand'
             // placeholder='Apple'
-            value={productDetails.marca}
+            value={productDetails.brand}
             onChange={(e) => handleInput(e)}
             className={`h-10 w-full p-2 my-4 flex items-center justify-center ${
               theme === themes.dark
@@ -82,12 +82,12 @@ const AddProductForm: React.FC = () => {
             } rounded border focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 focus:ring-1 transition-colors peer`}
           />
           <label
-            htmlFor='marca'
+            htmlFor='brand'
             className={`absolute left-0 top-4 p-2 text-gray-600 cursor-text peer-focus:text-md peer-focus:-top-5 peer-focus:text-indigo-600 transition-all ${
-              !productDetails.marca ? "" : "-top-5 text-indigo-600"
+              !productDetails.brand ? "" : "-top-5 text-indigo-600"
             }`}
           >
-            Marca
+            Brand
           </label>
         </div>
         {backendErrors ? (
