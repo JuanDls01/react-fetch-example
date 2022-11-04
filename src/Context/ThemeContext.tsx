@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 // Posibles temas, podría definirlos en models?
 export const themes = {
@@ -6,9 +6,13 @@ export const themes = {
   dark: "bg-black text-white",
 };
 
+const actualTheme: string | null = !localStorage.getItem("theme")
+  ? themes.dark
+  : localStorage.getItem("theme");
+
 type themeContextType = {
-  theme: string;
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
+  theme: string | null;
+  setTheme: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 // const MyContext = React.createContext(defaultValue);
@@ -24,8 +28,10 @@ type props = {
 // Creo un proveedor del contexto, el cual le permite a todos los componentes
 // que esten dentro de él, el uso el contexto
 const ThemeProvider: React.FC<props> = ({ children }) => {
-  const [theme, setTheme] = useState(themes.dark);
-
+  const [theme, setTheme] = useState(actualTheme);
+  useEffect(() => {
+    console.log(theme);
+  }, []);
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}

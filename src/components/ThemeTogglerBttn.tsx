@@ -1,10 +1,15 @@
 import { BsMoonStars, BsSun } from "react-icons/bs";
+import { useReloadContext } from "../Context/ReloadContext";
 import { themes, useThemeContext } from "../Context/ThemeContext";
 
 const ThemeTogglerBttn: React.FC = () => {
   const { theme, setTheme } = useThemeContext();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    theme === themes.dark ? setTheme(themes.light) : setTheme(themes.dark);
+    theme === themes.dark
+      ? localStorage.setItem("theme", themes.light)
+      : localStorage.setItem("theme", themes.dark);
+    const storageTheme: string | null = localStorage.getItem("theme");
+    setTheme(storageTheme);
   };
   return (
     <button
