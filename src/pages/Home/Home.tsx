@@ -41,7 +41,7 @@ const Home = () => {
               key={index}
               id={product.id}
               name={product.name}
-              marca={product.marca}
+              brand={product.brand}
             />
           );
         })
