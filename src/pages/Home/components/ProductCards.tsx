@@ -1,6 +1,6 @@
 import { ProductType } from "../../../models/products";
 import ProductCard from "./ProductCard";
-import CircularProgress from "@mui/material/CircularProgress";
+import CardsProgress from "./CardsProgress";
 
 type props = {
   productList?: ProductType[];
@@ -20,7 +20,7 @@ const ProductCards = ({ productList }: props) => {
           );
         })
       ) : (
-        <CircularProgress />
+        <CardsProgress />
       )}
     </div>
   );
