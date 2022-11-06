@@ -1,15 +1,19 @@
-import { useState } from "react";
 import { useReloadContext } from "../../../Context/ReloadContext";
-import { ProductType } from "../../../models/products";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { themes, useThemeContext } from "../../../Context/ThemeContext";
 
 type props = {
   numberOfPages: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  currentPage: number;
 };
 
-const Paginated: React.FC<props> = ({ numberOfPages, setCurrentPage }) => {
+const Paginated: React.FC<props> = ({
+  numberOfPages,
+  setCurrentPage,
+  currentPage,
+}) => {
   const { setReload } = useReloadContext();
+  const { theme } = useThemeContext();
 
   const pages: number[] = [];
   for (let i = 1; i <= numberOfPages; i++) {
@@ -28,15 +32,36 @@ const Paginated: React.FC<props> = ({ numberOfPages, setCurrentPage }) => {
   };
 
   return (
-    <div>
-      <button onClick={(e) => handleCurrentPage(e, "prev")}>
-        <GrFormPrevious />
+    <div className='h-12 flex justify-center'>
+      <button
+        onClick={(e) => handleCurrentPage(e, "prev")}
+        className={`my-1 mx-2 font-bold flex items-center justify-center ${
+          currentPage === 1 ? "text-gray-500" : ""
+        }`}
+        disabled={currentPage === 1 ? true : false}
+      >
+        Prev
       </button>
       {pages.map((page) => (
-        <button onClick={(e) => handleCurrentPage(e, "", page)}>{page}</button>
+        <button
+          onClick={(e) => handleCurrentPage(e, "", page)}
+          className={`h-10 w-10 my-1 mx-2 font-bold flex items-center justify-center rounded transition-colors delay-200 border-indigo-500 ${
+            page === currentPage
+              ? "bg-indigo-500 text-white"
+              : "border-2 text-indigo-500"
+          }`}
+        >
+          {page}
+        </button>
       ))}
-      <button onClick={(e) => handleCurrentPage(e, "next")}>
-        <GrFormNext />
+      <button
+        onClick={(e) => handleCurrentPage(e, "next")}
+        className={`my-1 mx-2 font-bold flex items-center justify-center ${
+          currentPage === numberOfPages ? "text-gray-500" : ""
+        }`}
+        disabled={currentPage === numberOfPages ? true : false}
+      >
+        Next
       </button>
     </div>
   );

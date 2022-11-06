@@ -11,7 +11,6 @@ type ProductList = ProductType[];
 
 const Home = () => {
   const [productList, setProductList] = useState<ProductList>([]);
-  const [productsToRender, setProductsToRender] = useState<ProductList>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [numberOfPages, setNumberOfPages] = useState<number>(1);
 
@@ -22,17 +21,8 @@ const Home = () => {
     getProducts(currentPage).then((response) => {
       setProductList(response.products);
       setNumberOfPages(response.pages);
-
-      // const productsToRender = giveProductsToRender(10, products, currentPage);
-      // console.log("productsToRender", productsToRender);
-      // setProductsToRender(productsToRender);
     });
   }, [reload]);
-
-  // useEffect(() => {
-  //   const productsToRender = giveProductsToRender(10, productList, currentPage);
-  //   setProductList(productsToRender);
-  // }, [currentPage]);
 
   return (
     <div className='h-screen w-96 flex flex-col m-4'>
@@ -54,6 +44,7 @@ const Home = () => {
       <Paginated
         numberOfPages={numberOfPages}
         setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
       />
     </div>
   );
