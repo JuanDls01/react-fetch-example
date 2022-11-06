@@ -1,20 +1,7 @@
-import { useReloadContext } from "../../../Context/ReloadContext";
-import { themes, useThemeContext } from "../../../Context/ThemeContext";
+import { usePageContext } from "../../../Context/PageContext";
 
-type props = {
-  numberOfPages: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  currentPage: number;
-};
-
-const Paginated: React.FC<props> = ({
-  numberOfPages,
-  setCurrentPage,
-  currentPage,
-}) => {
-  const { setReload } = useReloadContext();
-  const { theme } = useThemeContext();
-
+const Paginated: React.FC = () => {
+  const { numberOfPages, currentPage, setCurrentPage } = usePageContext();
   const pages: number[] = [];
   for (let i = 1; i <= numberOfPages; i++) {
     pages.push(i);
@@ -28,7 +15,6 @@ const Paginated: React.FC<props> = ({
     if (action === "prev") setCurrentPage((prev) => prev - 1);
     else if (action === "next") setCurrentPage((prev) => prev + 1);
     else setCurrentPage(page);
-    setReload((prev) => prev + 1);
   };
 
   return (
@@ -42,8 +28,9 @@ const Paginated: React.FC<props> = ({
       >
         Prev
       </button>
-      {pages.map((page) => (
+      {pages.map((page, index) => (
         <button
+          key={index}
           onClick={(e) => handleCurrentPage(e, "", page)}
           className={`h-10 w-10 my-1 mx-2 font-bold flex items-center justify-center rounded transition-colors delay-200 border-indigo-500 ${
             page === currentPage

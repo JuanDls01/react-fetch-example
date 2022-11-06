@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
+import { usePageContext } from "../../Context/PageContext";
 import { useReloadContext } from "../../Context/ReloadContext";
 import { useThemeContext } from "../../Context/ThemeContext";
 import { ProductType } from "../../models/products";
 import { getProducts } from "../../services";
-import { giveProductsToRender } from "../../utils/giveProductsToRender";
+
 import Paginated from "./components/Paginated";
-import ProductCard from "./components/ProductCard";
+import ProductCards from "./components/ProductCards";
 
 type ProductList = ProductType[];
 
 const Home = () => {
-  const [productList, setProductList] = useState<ProductList>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [numberOfPages, setNumberOfPages] = useState<number>(1);
-
+  const [productList, setProductList] = useState<ProductList | undefined>();
+  const { currentPage, setNumberOfPages } = usePageContext();
   const { theme } = useThemeContext();
   const { reload } = useReloadContext();
 
@@ -22,30 +21,13 @@ const Home = () => {
       setProductList(response.products);
       setNumberOfPages(response.pages);
     });
-  }, [reload]);
+  }, [reload | currentPage]);
 
   return (
     <div className='h-screen w-96 flex flex-col m-4'>
       <h1 className={`${theme} text-4xl font-bold mb-5`}>Products List</h1>
-      {productList ? (
-        productList.map((product, index) => {
-          return (
-            <ProductCard
-              key={index}
-              id={product.id}
-              name={product.name}
-              brand={product.brand}
-            />
-          );
-        })
-      ) : (
-        <p>No product founded</p>
-      )}
-      <Paginated
-        numberOfPages={numberOfPages}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      <ProductCards productList={productList} />
+      <Paginated />
     </div>
   );
 };

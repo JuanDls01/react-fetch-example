@@ -15,7 +15,7 @@ const ProductCard: React.FC<ProductType> = ({ id, name, brand }) => {
     <div
       className={`${
         theme === themes.dark ? "bg-[#363636]" : "bg-gray-500"
-      } rounded flex justify-between items-center flex-row p-2 mb-2`}
+      } w-full rounded flex justify-between items-center flex-row p-2 mb-2`}
     >
       {/* <div className='flex justify-between items-center flex-row w-full'> */}
       <div className='flex flex-col w-4/6 min-h-20 place-content-around justify-'>

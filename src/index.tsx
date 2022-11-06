@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import axios from "axios";
-import { UpdatedProvider } from "./Context/contextExample";
 import ThemeProvider from "./Context/ThemeContext";
 import ReloadProvider from "./Context/ReloadContext";
 import { BrowserRouter } from "react-router-dom";
+import PageProvider from "./Context/PageContext";
 
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -22,7 +22,9 @@ root.render(
     <BrowserRouter>
       <ThemeProvider>
         <ReloadProvider>
-          <App />
+          <PageProvider>
+            <App />
+          </PageProvider>
         </ReloadProvider>
       </ThemeProvider>
     </BrowserRouter>
