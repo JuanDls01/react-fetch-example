@@ -27,7 +27,7 @@ const Home = () => {
     return () => {
       isActive = false;
     };
-  }, [reload | currentPage]);
+  }, [reload, currentPage]);
 
   return (
     <div className='h-screen w-96 flex flex-col m-4'>

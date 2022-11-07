@@ -1,5 +1,4 @@
 import { BsMoonStars, BsSun } from "react-icons/bs";
-import { useReloadContext } from "../Context/ReloadContext";
 import { themes, useThemeContext } from "../Context/ThemeContext";
 
 const ThemeTogglerBttn: React.FC = () => {
