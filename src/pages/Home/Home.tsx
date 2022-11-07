@@ -17,10 +17,16 @@ const Home = () => {
   const { reload } = useReloadContext();
 
   useEffect(() => {
+    let isActive = true;
     getProducts(currentPage).then((response) => {
-      setProductList(response.products);
-      setNumberOfPages(response.pages);
+      if (isActive) {
+        setProductList(response.products);
+        setNumberOfPages(response.pages);
+      }
     });
+    return () => {
+      isActive = false;
+    };
   }, [reload | currentPage]);
 
   return (
