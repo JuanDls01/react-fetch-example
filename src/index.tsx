@@ -7,6 +7,7 @@ import ThemeProvider from "./Context/ThemeContext";
 import ReloadProvider from "./Context/ReloadContext";
 import { BrowserRouter } from "react-router-dom";
 import PageProvider from "./Context/PageContext";
+import ProductProvider from "./Context/ProductContext";
 
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -23,7 +24,9 @@ root.render(
       <ThemeProvider>
         <ReloadProvider>
           <PageProvider>
-            <App />
+            <ProductProvider>
+              <App />
+            </ProductProvider>
           </PageProvider>
         </ReloadProvider>
       </ThemeProvider>

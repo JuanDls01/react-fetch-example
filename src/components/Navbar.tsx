@@ -1,8 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { themes, useThemeContext } from "../Context/ThemeContext";
+import SearchBar from "./SearchBar";
 import ThemeTogglerBttn from "./ThemeTogglerBttn";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { theme } = useThemeContext();
   return (
     <nav className='w-full py-3 px-5 flex items-center justify-between border-b border-gray-800'>
@@ -13,7 +16,7 @@ const Navbar = () => {
       >
         Products App
       </h1>
-      <ul className='w-2/6 flex items-center justify-between'>
+      <ul className='w-3/6 flex items-center justify-between'>
         <li>
           <NavLink
             to='/home'
@@ -29,6 +32,9 @@ const Navbar = () => {
           >
             Create Product
           </NavLink>
+        </li>
+        <li>
+          <SearchBar />
         </li>
         <li>
           <ThemeTogglerBttn />
