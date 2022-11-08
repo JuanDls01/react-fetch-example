@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { ResponseType } from "axios";
 import { ProductType } from "../models/products";
 import { responseGetProductsType } from "../services";
 
