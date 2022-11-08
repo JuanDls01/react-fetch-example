@@ -1,14 +1,43 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Navbar } from "./components";
+import { usePageContext } from "./Context/PageContext";
+import { useProductContext } from "./Context/ProductContext";
+import { useReloadContext } from "./Context/ReloadContext";
 import { useThemeContext } from "./Context/ThemeContext";
-// import { CreateProduct, Home } from "./pages";
+import { useAsyncProducts } from "./hooks/useAsync";
+import { getProducts } from "./services";
+// import { Home, CreateProduct } from "./pages";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const CreateProduct = lazy(() => import("./pages/CreateProduct/CreateProduct"));
 
 function App() {
+  const { products, setProducts } = useProductContext();
+  const { currentPage, setNumberOfPages } = usePageContext();
+  const { reload } = useReloadContext();
   const { theme } = useThemeContext();
+
+  useAsyncProducts(getProducts, currentPage, setProducts, setNumberOfPages, [
+    reload,
+    currentPage,
+  ]);
+  // useEffect(() => {
+  //   let isActive = true;
+  //   console.log(isActive);
+  //   if (isActive) {
+  //     getProducts(currentPage).then((response) => {
+  //       if (isActive) {
+  //         setProducts(response.products);
+  //         setNumberOfPages(response.pages);
+  //       }
+  //     });
+  //   }
+  //   return () => {
+  //     isActive = false;
+  //     console.log("final", isActive);
+  //   };
+  // }, [reload, currentPage]);
 
   return (
     <div
