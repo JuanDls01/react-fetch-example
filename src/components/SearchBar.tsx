@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { themes, useThemeContext } from "../Context/ThemeContext";
+import { searchProduct } from "../services";
 
 export type searchDetailsType = {
   searchValue: string;
@@ -24,7 +25,7 @@ const SearchBar: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("input", searchDetails);
+    searchProduct(searchDetails);
     // await searchProduct().then((response) => {
     //     setProductList(response)
     //     setReload((prev) => prev+1)
