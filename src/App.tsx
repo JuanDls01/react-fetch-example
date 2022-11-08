@@ -22,22 +22,6 @@ function App() {
     reload,
     currentPage,
   ]);
-  // useEffect(() => {
-  //   let isActive = true;
-  //   console.log(isActive);
-  //   if (isActive) {
-  //     getProducts(currentPage).then((response) => {
-  //       if (isActive) {
-  //         setProducts(response.products);
-  //         setNumberOfPages(response.pages);
-  //       }
-  //     });
-  //   }
-  //   return () => {
-  //     isActive = false;
-  //     console.log("final", isActive);
-  //   };
-  // }, [reload, currentPage]);
 
   return (
     <div
