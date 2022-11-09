@@ -1,31 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
-import swal from "sweetalert";
 import { usePageContext } from "../Context/PageContext";
-import { useProductContext } from "../Context/ProductContext";
 import { useReloadContext } from "../Context/ReloadContext";
 import { themes, useThemeContext } from "../Context/ThemeContext";
 import { searchDetailsType } from "../models";
-import { searchProduct } from "../services";
-
-// export type searchDetailsType = {
-//   searchValue: string;
-//   searchBy: string;
-// };
 
 type inputSelectTypeEvent =
   | React.ChangeEvent<HTMLInputElement>
   | React.ChangeEvent<HTMLSelectElement>;
 
 const SearchBar: React.FC = () => {
+  const { paginate, setPaginate } = usePageContext();
   const [searchDetails, setSearchDetails] = useState<searchDetailsType>({
-    searchValue: "",
-    searchBy: "name",
+    searchValue: paginate.searchDetails.searchValue,
+    searchBy: paginate.searchDetails.searchBy,
   });
-  const { setPaginate } = usePageContext();
   const { setReload } = useReloadContext();
-  const { setProducts } = useProductContext();
   const { theme } = useThemeContext();
+  const { reload } = useReloadContext();
+
+  useEffect(() => {
+    setSearchDetails({
+      searchValue: paginate.searchDetails.searchValue,
+      searchBy: paginate.searchDetails.searchBy,
+    });
+    console.log("estado local", searchDetails.searchValue);
+    console.log("context", paginate.searchDetails.searchValue);
+  }, [reload]);
 
   const handleInput = (e: inputSelectTypeEvent) => {
     setSearchDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -41,6 +42,10 @@ const SearchBar: React.FC = () => {
         searchBy: searchDetails.searchBy,
       },
     }));
+    // setSearchDetails({
+    //   searchValue: "",
+    //   searchBy: "name",
+    // });
     setReload((prev) => prev + 1);
   };
 

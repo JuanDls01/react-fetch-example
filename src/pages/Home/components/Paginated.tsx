@@ -34,7 +34,7 @@ const Paginated: React.FC = () => {
         <button
           key={index}
           onClick={(e) => handleCurrentPage(e, "", page)}
-          className={`h-10 w-10 my-1 mx-2 font-bold flex items-center justify-center rounded transition-colors delay-200 border-indigo-500 ${
+          className={`h-10 w-10 my-1 mx-2 font-bold flex items-center justify-center rounded transition-colors delay-100 border-indigo-500 ${
             page === paginate.currentPage
               ? "bg-indigo-500 text-white"
               : "border-2 text-indigo-500"
