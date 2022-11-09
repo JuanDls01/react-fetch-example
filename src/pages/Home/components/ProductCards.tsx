@@ -1,17 +1,15 @@
-import { useEffect } from "react";
-import { ProductType } from "../../../models/products";
 import ProductCard from "./ProductCard";
+import { useEffect } from "react";
 import CardsProgress from "./CardsProgress";
 import { useProductContext } from "../../../Context/ProductContext";
-import { getProducts } from "../../../services";
-import { usePageContext } from "../../../Context/PageContext";
-import { useReloadContext } from "../../../Context/ReloadContext";
 
 const ProductCards = () => {
   const { products } = useProductContext();
-
+  useEffect(() => {
+    console.log(products);
+  }, []);
   return (
-    <div className='h-96 flex flex-col items-center'>
+    <div className='h-full flex flex-col items-center'>
       {products.length === 0 ? (
         <CardsProgress />
       ) : (

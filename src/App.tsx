@@ -5,7 +5,7 @@ import { usePageContext } from "./Context/PageContext";
 import { useProductContext } from "./Context/ProductContext";
 import { useReloadContext } from "./Context/ReloadContext";
 import { useThemeContext } from "./Context/ThemeContext";
-import { useAsyncProducts } from "./hooks/useAsync";
+import { useGetProducts } from "./hooks/useGetProducts";
 import { getProducts } from "./services";
 // import { Home, CreateProduct } from "./pages";
 
@@ -13,14 +13,14 @@ const Home = lazy(() => import("./pages/Home/Home"));
 const CreateProduct = lazy(() => import("./pages/CreateProduct/CreateProduct"));
 
 function App() {
-  const { products, setProducts } = useProductContext();
-  const { currentPage, setNumberOfPages } = usePageContext();
+  const { setProducts } = useProductContext();
+  const { paginate, setPaginate } = usePageContext();
   const { reload } = useReloadContext();
   const { theme } = useThemeContext();
 
-  useAsyncProducts(getProducts, currentPage, setProducts, setNumberOfPages, [
+  useGetProducts(getProducts, paginate, setProducts, setPaginate, [
     reload,
-    currentPage,
+    paginate.currentPage,
   ]);
 
   return (

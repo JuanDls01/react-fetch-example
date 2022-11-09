@@ -1,23 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
+import { usePageContext } from "../Context/PageContext";
+import { useReloadContext } from "../Context/ReloadContext";
 import { themes, useThemeContext } from "../Context/ThemeContext";
-import { searchProduct } from "../services";
-
-export type searchDetailsType = {
-  searchValue: string;
-  searchBy: string;
-};
+import { searchDetailsType } from "../models";
 
 type inputSelectTypeEvent =
   | React.ChangeEvent<HTMLInputElement>
   | React.ChangeEvent<HTMLSelectElement>;
 
 const SearchBar: React.FC = () => {
+  const { paginate, setPaginate } = usePageContext();
   const [searchDetails, setSearchDetails] = useState<searchDetailsType>({
-    searchValue: "",
-    searchBy: "name",
+    searchValue: paginate.searchDetails.searchValue,
+    searchBy: paginate.searchDetails.searchBy,
   });
+  const { setReload } = useReloadContext();
   const { theme } = useThemeContext();
+  const { reload } = useReloadContext();
+
+  useEffect(() => {
+    setSearchDetails({
+      searchValue: paginate.searchDetails.searchValue,
+      searchBy: paginate.searchDetails.searchBy,
+    });
+    console.log("estado local", searchDetails.searchValue);
+    console.log("context", paginate.searchDetails.searchValue);
+  }, [reload]);
 
   const handleInput = (e: inputSelectTypeEvent) => {
     setSearchDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -25,12 +34,19 @@ const SearchBar: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    searchProduct(searchDetails);
-    // await searchProduct().then((response) => {
-    //     setProductList(response)
-    //     setReload((prev) => prev+1)
-    //     setInput('')
-    // })
+    setPaginate((prev) => ({
+      ...prev,
+      currentPage: 1,
+      searchDetails: {
+        searchValue: searchDetails.searchValue,
+        searchBy: searchDetails.searchBy,
+      },
+    }));
+    // setSearchDetails({
+    //   searchValue: "",
+    //   searchBy: "name",
+    // });
+    setReload((prev) => prev + 1);
   };
 
   return (
