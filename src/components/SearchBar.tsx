@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
+import swal from "sweetalert";
+import { usePageContext } from "../Context/PageContext";
+import { useProductContext } from "../Context/ProductContext";
+import { useReloadContext } from "../Context/ReloadContext";
 import { themes, useThemeContext } from "../Context/ThemeContext";
+import { searchDetailsType } from "../models";
 import { searchProduct } from "../services";
 
-export type searchDetailsType = {
-  searchValue: string;
-  searchBy: string;
-};
+// export type searchDetailsType = {
+//   searchValue: string;
+//   searchBy: string;
+// };
 
 type inputSelectTypeEvent =
   | React.ChangeEvent<HTMLInputElement>
@@ -17,6 +22,9 @@ const SearchBar: React.FC = () => {
     searchValue: "",
     searchBy: "name",
   });
+  const { setPaginate } = usePageContext();
+  const { setReload } = useReloadContext();
+  const { setProducts } = useProductContext();
   const { theme } = useThemeContext();
 
   const handleInput = (e: inputSelectTypeEvent) => {
@@ -25,12 +33,15 @@ const SearchBar: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    searchProduct(searchDetails);
-    // await searchProduct().then((response) => {
-    //     setProductList(response)
-    //     setReload((prev) => prev+1)
-    //     setInput('')
-    // })
+    setPaginate((prev) => ({
+      ...prev,
+      currentPage: 1,
+      searchDetails: {
+        searchValue: searchDetails.searchValue,
+        searchBy: searchDetails.searchBy,
+      },
+    }));
+    setReload((prev) => prev + 1);
   };
 
   return (

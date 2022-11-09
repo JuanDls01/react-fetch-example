@@ -1,11 +1,6 @@
-import { useEffect } from "react";
-import { ProductType } from "../../../models/products";
 import ProductCard from "./ProductCard";
 import CardsProgress from "./CardsProgress";
 import { useProductContext } from "../../../Context/ProductContext";
-import { getProducts } from "../../../services";
-import { usePageContext } from "../../../Context/PageContext";
-import { useReloadContext } from "../../../Context/ReloadContext";
 
 const ProductCards = () => {
   const { products } = useProductContext();
